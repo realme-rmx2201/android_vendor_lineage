@@ -13,6 +13,9 @@ func lineageExpandVariables(ctx android.ModuleContext, in string) string {
 		if lineageVars.IsSet(name) {
 			return lineageVars.String(name), nil
 		}
+		if name == "TARGET_KERNEL_SOURCE" {
+			return ".", nil
+		}
 		// This variable is not for us, restore what the original
 		// variable string will have looked like for an Expand
 		// that comes later.
